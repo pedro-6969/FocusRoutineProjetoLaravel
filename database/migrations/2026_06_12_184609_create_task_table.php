@@ -15,20 +15,20 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('user_id')
-                ->constrained()
+                ->constrained('users')
                 ->cascadeOnDelete();
             
             $table->foreignId('category_id')
                 ->nullable()
-                ->constrained()
+                ->constrained('category')
                 ->nullOnDelete();
 
             $table->string('title');
             $table->text('description')->nullable();
 
             $table->date('task_date');
-            $table->time('start_time')->nullable;
-            $table->time('end_time')->nullable;
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
 
             $table->enum('priority', ['low', 'medium', 'high'])
                 ->default('medium');
