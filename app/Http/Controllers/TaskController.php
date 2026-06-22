@@ -8,7 +8,7 @@ use Illuminate\Support\Facaddes\Auth;
 
 class TaskController extends Controller
 {
-    public function index(){
+    public function dashboard(){
         $task = Auth::user()
             ->task()
             ->orderBy('task_date')
