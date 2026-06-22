@@ -27,6 +27,10 @@ class TaskController extends Controller
         ));
     }
 
+    public function create(){
+        return view('task.create');
+    }
+
     public function store(Request $request){
         $request->validate([
             'title' => 'required|string|max:255',
@@ -49,6 +53,44 @@ class TaskController extends Controller
         return redirect()
             ->route('dashboard')
             ->with('success', 'Task added succesfully!');
+    }
+
+    public function edit(Task $task){
+        if($task->user_id !== Auth::id()){
+            abort(403);
+        }
+
+        return iew('task.edit', compact('task'));
+    }
+
+    public function update(Request $request, Task $task){
+        if ($task->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'category' => 'required|in:Study,Work,Personal,Health,Other',
+            'priority' => 'required|in:Low,Medium,High',
+            'task_date' => 'required|date',
+            'task_time' => 'nullable',
+            'status' => 'required|in:Pending,Completed',
+        ]);
+
+        $task->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'category' => $request->category,
+            'priority' => $request->priority,
+            'task_date' => $request->task_date,
+            'task_time' => $request->task_time,
+            'status' => $request->status,
+        ]);
+
+        return redirect()
+            ->route('dashboard')
+            ->with('success', 'Task updated successfully!');
     }
     
     public function complete(Task $task){
