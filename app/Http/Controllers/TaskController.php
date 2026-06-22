@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facaddes\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -30,7 +30,7 @@ class TaskController extends Controller
     public function store(Request $request){
         $request->validate([
             'title' => 'required|string|max:255',
-            'desciption' => 'nullable|string',
+            'description' => 'nullable|string',
             'category' => 'required|in:Study,Work,Personal,Health,Other',
             'priority' => 'required|in:Low,Medium,High',
             'task_date' => 'required|date',
@@ -38,7 +38,7 @@ class TaskController extends Controller
         ]);
         Auth::user()->task()->create([
             'title' => $request->title,
-            'desciption' => $request->description,
+            'description' => $request->description,
             'category' => $request->category,
             'priority' => $request->priority,
             'task_date' => $request->task_date,
@@ -48,7 +48,7 @@ class TaskController extends Controller
 
         return redirect()
             ->route('dashboard')
-            ->with('sucess', 'Task added succesfully!');
+            ->with('success', 'Task added succesfully!');
     }
     
     public function complete(Task $task){

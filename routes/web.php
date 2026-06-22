@@ -16,8 +16,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('/create', [TaskController::class, 'create'])->name('task.create');
         Route::post('/store', [TaskController::class, 'store'])->name('task.store');
 
-        Route::get('/{task}/edit', {TaskController::class, 'edit'})->name('task.edit');
-        Route::patch('/{task}', {TaskController::class, 'update'})->name('task.update');
+        Route::get('/{task}/edit', [TaskController::class,'edit'])->name('task.edit');
+        Route::patch('/{task', [TaskController::class,'update'])->name('task.update');
 
         Route::patch('/{task}/complete', [TaskController::class, 'complete'])->name('task.complete');
         Route::delete('/{task}', [TaskController::class, 'destroy'])->name('task.destroy');
