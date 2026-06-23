@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-    
-=======
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -60,4 +57,3 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
-
