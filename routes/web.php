@@ -5,17 +5,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index');
+})->name('index');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/dashboard', [TaskController::class, 'index'])
+    Route::get('/dashboard', [TaskController::class, 'dashboard'])
         ->name('dashboard');
 
-    Route::prefix('task')->name('task.')->controller(TaskController::class)->group(function () {
-        Route::get('/create', 'create')->name('create');
-        Route::post('/', 'store')->name('store');
+    Route::prefix('task')->controller(TaskController::class)->group(function () {
+        Route::get('/create', 'create')->name('task.create');
+        Route::post('/', 'store')->name('task.store');
 
         Route::get('/{task}/edit', 'edit')->name('edit');
         Route::patch('/{task}', 'update')->name('update');
