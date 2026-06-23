@@ -60,7 +60,7 @@ class TaskController extends Controller
             abort(403);
         }
 
-        return iew('task.edit', compact('task'));
+        return view('task.edit', compact('task'));
     }
 
     public function update(Request $request, Task $task){
