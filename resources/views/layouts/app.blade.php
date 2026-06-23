@@ -13,6 +13,7 @@
 
     {{-- Bootstrap Icons para os ícones das telas --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- CSS geral do sistema --}}
     
