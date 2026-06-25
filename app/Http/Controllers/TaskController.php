@@ -31,11 +31,11 @@ class TaskController extends Controller
 
 
         $task = $taskQuery
-        ->orderByRaw("FIELD(priority, 'High', 'Medium', 'Low')")
-        ->orderBy('task_date')
-        ->orderBy('task_time')
-        ->paginate(6)
-        ->withQueryString();
+            ->orderByRaw("FIELD(priority, 'High', 'Medium', 'Low')")
+            ->orderBy('task_date')
+            ->orderBy('task_time')
+            ->paginate(6)
+            ->withQueryString();
 
         $total_task = $user->task()->count();
 
@@ -50,6 +50,7 @@ class TaskController extends Controller
 
 
         return view('dashboard', compact(
+            'category',
             'task',
             'pending_task',
             'completed_task',
