@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
         $category = $user->category()->withCount('task')->orderBy('name')->get();
 
-        return view('dashboard', ['category' => $category]);
+        return view('dashboard', compact('category'));
     }
 
     public function create()
@@ -107,7 +107,7 @@ class CategoryController extends Controller
     {
         if($category->user_id !== Auth::id()) abort(403);
 
-        return view('category.category-edit', ['category' => $category]);
+        return view('category.category-edit', compact('category'));
     }
 
     public function update(Category $category, Request $request)
