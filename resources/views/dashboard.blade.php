@@ -74,16 +74,16 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
             <div>
                 <h1 class="h4 fw-bold mb-1">
-                    Bem-vindo de volta, {{ Auth::user()->name ?? 'Alex' }}!
+                    Welcome back, {{ Auth::user()->name ?? 'Alex' }}!
                 </h1>
                 <p class="text-muted mb-0">
-                    Organize seu dia e acompanhe sua produtividade.
+                    Organize your day and track your productivity.
                 </p>
             </div>
 
             <a href="{{ url('/task/create') }}" class="btn btn-fr-primary">
                 <i class="bi bi-plus-lg me-1"></i>
-                Adicionar Nova Tarefa
+                Add new task
             </a>
         </div>
 
@@ -93,7 +93,7 @@
                 <div class="welcome-card h-100">
                     <h2 class="h5 fw-bold mb-2">Organize your day and stay focused</h2>
                     <p class="mb-0 opacity-75">
-                        Acompanhe suas tarefas pendentes, concluídas e mantenha sua rotina em ordem.
+                        Keep track of your pending and completed tasks, and keep your routine organized.
                     </p>
                 </div>
             </div>
@@ -136,7 +136,7 @@
             @if ($tasks->count())
                 <div class="row g-3">
                     @foreach ($tasks as $item)
-                        @php
+                        
                             /*
                                 Preparação visual de prioridade.
                                 Aceita Low, Medium, High ou Baixa, Média, Alta.
@@ -168,7 +168,7 @@
                                 : '--:--';
 
                             $isCompleted = strtolower($item->status ?? '') === 'completed';
-                        @endphp
+                        
 
                         <div class="col-12 col-md-6 col-xl-4">
                             <article class="task-card">
