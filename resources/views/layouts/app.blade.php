@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     {{-- Configurações básicas da página --}}
     <meta charset="utf-8">
