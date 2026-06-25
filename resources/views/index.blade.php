@@ -14,9 +14,9 @@
                 <span>Focus Routine</span>
             </div>
 
-            <h1 class="h3 fw-bold mb-2">Bem-vindo à Focus Routine</h1>
+            <h1 class="h3 fw-bold mb-2">Welcome to Focus Routine</h1>
             <p class="mb-0 opacity-75">
-                Organize sua rotina, acompanhe tarefas e melhore sua produtividade.
+                Organize your routine, track tasks, and improve your productivity.
             </p>
         </div>
 
@@ -27,7 +27,7 @@
                     {{-- Botão para login --}}
                     <a href="{{ route('login') }}" class="action-tile">
                         <i class="bi bi-box-arrow-in-right"></i>
-                        <span class="fw-bold">Acessar Conta</span>
+                        <span class="fw-bold">Login</span>
                     </a>
                 </div>
 
@@ -35,7 +35,7 @@
                     {{-- Botão para cadastro --}}
                     <a href="{{ route('register') }}" class="action-tile">
                         <i class="bi bi-person-plus"></i>
-                        <span class="fw-bold">Criar Cadastro</span>
+                        <span class="fw-bold">Sign up</span>
                     </a>
                 </div>
             </div>

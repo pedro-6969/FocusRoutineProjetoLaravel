@@ -453,7 +453,7 @@
                 </a>
 
                 {{-- Use somente se a rota do calendário já existir --}}
-                <a href="{{ route('calendar.index') }}">
+                <a href="{{ route('calendar.show') }}">
                     <i class="bi bi-calendar3"></i>
                 </a>
             </nav>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Requests\Auth\RegisteredUserController;
 
 Route::get('/', function () {
     return view('index');
@@ -14,6 +15,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard', [TaskController::class, 'dashboard'])
         ->name('dashboard');
+
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 
     Route::prefix('task')->controller(TaskController::class)->group(function () {
         Route::get('/create', 'create')->name('task.create');
