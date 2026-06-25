@@ -1,4 +1,8 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('title', 'Focus Routine - Criar Categoria')
+
+@section('content')
     <div class="app-wrapper">
         <main class="content-area w-100">
 
@@ -98,4 +102,4 @@
 
         </main>
     </div>
-</x-app-layout>
+@endsection

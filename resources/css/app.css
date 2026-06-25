@@ -443,6 +443,64 @@ a {
     font-weight: 700;
 }
 
+/* Bolinha usada para identificar a cor da categoria */
+.category-color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* Cores permitidas pelo CategoryController */
+.category-blue {
+    background: var(--fr-blue);
+}
+
+.category-green {
+    background: var(--fr-success);
+}
+
+.category-yellow {
+    background: var(--fr-warning);
+}
+
+.category-red {
+    background: var(--fr-danger);
+}
+
+.category-purple {
+    background: #9b7edb;
+}
+
+.category-gray {
+    background: var(--fr-muted);
+}
+
+/* Melhora visual das opções de cor */
+.category-option {
+    min-height: 92px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Opção selecionada */
+.btn-check:checked + .category-option {
+    border-color: var(--fr-blue);
+    background: #edf4fa;
+    color: var(--fr-blue-dark);
+    font-weight: 700;
+    box-shadow: 0 0 0 0.15rem rgba(73, 111, 146, 0.12);
+}
+
+/* Foco pelo teclado */
+.btn-check:focus + .category-option {
+    border-color: var(--fr-blue);
+    box-shadow: 0 0 0 0.18rem rgba(73, 111, 146, 0.18);
+}
+
 /* Responsividade */
 @media (max-width: 991px) {
     .app-sidebar {
