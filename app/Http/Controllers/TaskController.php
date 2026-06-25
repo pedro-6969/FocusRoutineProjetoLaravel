@@ -64,7 +64,13 @@ class TaskController extends Controller
     }
 
     public function store(Request $request){
+
         $request->validate([
+            'category_id' => [
+                'required',
+                Rule::exists('category', 'id')
+                    ->where('user_id', Auth::id()),
+            ],
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category' => 'required|in:Study,Work,Personal,Health,Other',
@@ -72,7 +78,9 @@ class TaskController extends Controller
             'task_date' => 'required|date',
             'task_time' => 'nullable',
         ]);
+
         Auth::user()->task()->create([
+            'category_id' => $request->category_id,
             'title' => $request->title,
             'description' => $request->description,
             'category' => $request->category,

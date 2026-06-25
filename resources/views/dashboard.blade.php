@@ -1,4 +1,8 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('title', 'Focus Routine - Página Inicial')
+
+@section  
     <div class="app-wrapper">
 
         {{-- Sidebar desktop --}}
@@ -460,4 +464,5 @@
 
         </main>
     </div>
-</x-app-layout>
+
+@endsection
