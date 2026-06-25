@@ -114,7 +114,7 @@
                 <span class="fr-logo">
                     <i class="bi bi-bullseye"></i>
                 </span>
-                <span>Calendário</span>
+                <span>Calendar</span>
             </div>
 
             <a href="{{ url('/task/create') }}" class="text-white">
@@ -125,15 +125,15 @@
         {{-- Cabeçalho do calendário --}}
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
             <div>
-                <h1 class="h4 fw-bold mb-1">Calendário</h1>
+                <h1 class="h4 fw-bold mb-1">Calendar</h1>
                 <p class="text-muted mb-0">
-                    Veja suas tarefas organizadas por data.
+                    View your tasks organized by date.
                 </p>
             </div>
 
             <a href="{{ url('/task/create') }}" class="btn btn-fr-primary">
                 <i class="bi bi-plus-lg me-1"></i>
-                Nova Tarefa
+                New task.
             </a>
         </div>
 
@@ -191,7 +191,7 @@
 
                                 @if ($dayTasks->count())
                                     <small class="d-none d-md-block text-muted mt-2">
-                                        {{ $dayTasks->count() }} tarefa(s)
+                                        {{ $dayTasks->count() }} task(s)
                                     </small>
                                 @endif
                             </a>
@@ -203,7 +203,7 @@
             {{-- Tarefas do dia selecionado --}}
             <div class="col-12 col-xl-4">
                 <aside class="fr-card p-3 p-md-4">
-                    <h2 class="h5 fw-bold mb-1">Tarefas do dia</h2>
+                    <h2 class="h5 fw-bold mb-1">Tasks of the day</h2>
 
                     <p class="text-muted small mb-4">
                         {{ $selectedCarbon->format('d/m/Y') }}
@@ -226,7 +226,7 @@
                                             </h3>
 
                                             <p class="small text-muted mb-2">
-                                                {{ $item->description ?? 'Sem descrição.' }}
+                                                {{ $item->description ?? 'No description.' }}
                                             </p>
                                         </div>
 
@@ -245,7 +245,7 @@
                         <div class="text-center py-4">
                             <i class="bi bi-calendar-check display-6 text-muted"></i>
                             <p class="text-muted mt-3 mb-0">
-                                Nenhuma tarefa para este dia.
+                                No tasks for this day.
                             </p>
                         </div>
                     @endif
