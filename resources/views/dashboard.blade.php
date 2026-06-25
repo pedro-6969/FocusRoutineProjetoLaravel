@@ -2,7 +2,7 @@
 
 @section('title', 'Focus Routine - Página Inicial')
 
-@section  
+@section('content')
     <div class="app-wrapper">
 
         {{-- Sidebar desktop --}}
