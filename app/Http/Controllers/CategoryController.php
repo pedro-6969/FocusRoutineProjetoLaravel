@@ -165,13 +165,13 @@ class CategoryController extends Controller
         if($category->task()->exists())
         {
             return back()->withErrors([
-                'category' => 'Você não pode deletar esta categoria pois existem tarefas vinculadas!!'
+                'category' => 'You cannot delete this category because it has tasks linked to it.'
             ]);
         }
 
         $category->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Categoria Deletada!!');
+        return redirect()->route('dashboard')->with('success', 'Category deleted successfully!');
 
 
     }
