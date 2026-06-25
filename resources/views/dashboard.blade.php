@@ -22,7 +22,7 @@
             </a>
 
             {{-- Use esta rota apenas se o CalendarController já existir --}}
-            <a href="{{ route('calendar.index') }}" class="sidebar-link" title="Calendar">
+            <a href="{{ route('calendar.show') }}" class="sidebar-link" title="Calendar">
                 <i class="bi bi-calendar3"></i>
             </a>
         </aside>
