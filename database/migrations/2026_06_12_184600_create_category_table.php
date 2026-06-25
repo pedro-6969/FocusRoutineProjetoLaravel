@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -14,11 +15,17 @@ return new class extends Migration
         Schema::create('category', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignIdFor(User::class)
+            ->constrained('users')
+            ->onDelete('cascade');
+
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('color');
 
             $table->timestamps();
+
+            $table->unique(['user_id', 'slug']);
         });
     }
 

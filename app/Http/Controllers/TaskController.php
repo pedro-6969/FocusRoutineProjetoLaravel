@@ -5,25 +5,56 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class TaskController extends Controller
 {
-    public function dashboard(){
-        $task = Auth::user()
-            ->task()
-            ->orderBy('task_date')
-            ->orderBy('task_time')
-            ->get();
+    public function dashboard(Request $request){
 
-        $pending_task = $task->where('status', 'Pending')->count();
-        $completed_task = $task->where('status', 'Completed')->count();
-        $total_task = $task->count();
+        $user = Auth::user();
+
+        $category = $user->category()->withCount('task')->orderBy('name')->get();
+
+
+        
+        $taskQuery = $user
+            ->task()->with('category');
+
+
+        if ($request->filled('category_id')) $taskQuery->where('category_id', $request->category_id);
+
+        if ($request->filled('priority')) $taskQuery->where('priority', $request->priority);
+
+        if ($request->filled('status')) $taskQuery->where('status', $request->status);
+
+        if ($request->filled('task_date')) $taskQuery->where('task_date', $request->task_date);
+
+
+        $task = $taskQuery
+        ->orderByRaw("FIELD(priority, 'High', 'Medium', 'Low')")
+        ->orderBy('task_date')
+        ->orderBy('task_time')
+        ->paginate(6)
+        ->withQueryString();
+
+        $total_task = $user->task()->count();
+
+        $pending_task = $user->task()->where('status', 'Pending')->count();
+
+        $completed_task = $user->task()->where('status', 'Completed')->count();
+
+        $overdue_task = $user->task()->where('status', 'Pending')->whereDate('task_date', '<', today())->count();
+
+
+
+
 
         return view('dashboard', compact(
             'task',
             'pending_task',
             'completed_task',
-            'total_task'
+            'total_task',
+            'overdue_task',
         ));
     }
 

@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('index');
@@ -24,7 +26,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/{task}', 'destroy')->name('destroy');
     });
 
+    Route::prefix('category')->name('category.')->controller(CategoryController::class)->group(function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+
+        Route::get('/{category}/edit', 'edit')->name('edit');
+        Route::patch('/{category}', 'update')->name('update');
+
+        Route::delete('/{category}', 'destroy')->name('destroy');
+    });
+
+    Route::get('/calendar/show', [CalendarController::class, 'show'])
+    ->name('calendar.show');
+
 });
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Task;
+use App\Models\Category;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,6 +51,11 @@ class User extends Authenticatable
 
     public function task()
     {
-        return $this->hasMany(Task::class, 'user_id');
+        return $this->hasMany(Task::class);
+    }
+
+    public function category()
+    {
+        return $this->hasMany(Category::class);
     }
 }

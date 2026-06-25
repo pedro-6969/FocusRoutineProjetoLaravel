@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Carbon\Carbon;
 
 
 class Task extends Model
@@ -39,5 +40,32 @@ class Task extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function isOverdue(): bool
+    {
+        return $this->status === 'Pending'
+            && Carbon::parse($this->task_date)->isBefore(today());
+    }
+
+    public function priorityClass(): string
+    {
+        return match ($this->priority) {
+            'High' => 'priority-high',
+            'Medium' => 'priority-medium',
+            'Low' => 'priority-low',
+            default => 'priority-default',
+        };
+    }
+
+    public function statusClass(): string
+    {
+        if ($this->isOverdue()) {
+            return 'task-overdue';
+        }
+
+        return $this->status === 'Completed'
+            ? 'task-completed'
+            : 'task-pending';
     }
 }

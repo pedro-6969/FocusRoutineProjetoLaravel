@@ -28,15 +28,15 @@
         </div>
 
         <nav>
-            <a href="{{ url('/dashboard') }}" class="sidebar-link" title="Dashboard">
+            <a href="{{ route('dashboard')}}" class="sidebar-link" title="Dashboard">
                 <i class="bi bi-house"></i>
             </a>
 
-            <a href="{{ url('/calendar') }}" class="sidebar-link" title="Calendário">
+            <a href="{{ route('calendar.show') }}" class="sidebar-link" title="Calendário">
                 <i class="bi bi-calendar3"></i>
             </a>
 
-            <a href="{{ url('/task/create') }}" class="sidebar-link active" title="Nova tarefa">
+            <a href="{{ route('task.create') }}" class="sidebar-link active" title="Nova tarefa">
                 <i class="bi bi-plus-lg"></i>
             </a>
 
@@ -77,7 +77,7 @@
                     </div>
 
                     {{-- Formulário de criação de tarefa --}}
-                    <form method="POST" action="{{ url('/task') }}">
+                    <form method="POST" action="{{ route('task.store') }}">
                         @csrf
 
                         {{-- Título --}}

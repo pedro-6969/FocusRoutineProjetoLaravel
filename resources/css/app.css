@@ -333,7 +333,7 @@ a {
 }
 
 .calendar-day:hover,
-.calendar-day.active {
+.calendar-day.selected {
     border-color: var(--fr-blue);
     box-shadow: 0 8px 20px rgba(73, 111, 146, 0.14);
 }
@@ -359,6 +359,81 @@ a {
     cursor: pointer;
     transition: 0.2s ease;
     background: #ffffff;
+}
+
+/* Estado do dia atual */
+.calendar-day-today {
+    border: 2px solid var(--fr-blue);
+}
+
+/* Dia selecionado pelo usuário */
+.calendar-day-selected {
+    background: #dcebf7;
+    border-color: var(--fr-blue);
+    box-shadow: 0 8px 20px rgba(73, 111, 146, 0.18);
+}
+
+/* Dia com tarefa atrasada */
+.calendar-day-has-overdue {
+    border-color: var(--fr-danger);
+    background: #fff5f5;
+}
+
+/* Cabeçalho interno do dia */
+.calendar-day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+/* Número do dia */
+.calendar-day-number {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* Contador de tarefas no dia */
+.calendar-task-count {
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: #edf4fa;
+    color: var(--fr-blue-dark);
+    border-radius: 999px;
+    padding: 2px 7px;
+}
+
+/* Tarefa dentro do calendário */
+.calendar-task-pill {
+    margin-top: 5px;
+    padding: 5px 7px;
+    border-radius: 9px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Texto da tarefa dentro do calendário */
+.calendar-task-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Tarefa atrasada */
+.task-overdue {
+    border-left: 4px solid var(--fr-danger);
+}
+
+/* Texto de alerta para tarefa atrasada */
+.overdue-label {
+    color: #ad3434;
+    font-size: 0.65rem;
+    font-weight: 700;
 }
 
 .btn-check:checked + .category-option {
@@ -418,11 +493,7 @@ a {
         color: #ffffff;
     }
 
-    .calendar-day {
-        min-height: 58px;
-        padding: 7px;
-        font-size: 0.82rem;
-    }
+    
 }
 
 @media (max-width: 575px) {
@@ -464,3 +535,5 @@ a {
         border-radius: 10px;
     }
 }
+
+
