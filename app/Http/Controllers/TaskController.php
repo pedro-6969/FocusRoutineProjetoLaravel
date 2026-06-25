@@ -60,6 +60,22 @@ class TaskController extends Controller
     }
 
     public function create(){
+
+        $categories = Auth::user()
+        ->category()
+        ->orderBy('name')
+        ->get();
+
+        if ($categories->isEmpty()) {
+            return redirect()
+                ->route('category.create')
+                ->with(
+                    'info',
+                    'Create your first category before adding a task.'
+                );
+        }
+    
+
         return view('task.create');
     }
 
