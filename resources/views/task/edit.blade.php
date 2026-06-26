@@ -1,4 +1,9 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('title', 'Edit Task - Focus Routine')
+
+@section('content')
+
     <div class="app-wrapper">
 
         {{-- =========================================================
@@ -59,21 +64,7 @@
         <main class="content-area">
 
             {{-- Topbar mobile --}}
-            <div class="mobile-topbar">
-
-                <div class="fr-brand">
-                    <span class="fr-logo">
-                        <i class="bi bi-bullseye"></i>
-                    </span>
-
-                    <span>Focus Routine</span>
-                </div>
-
-                <span>
-                    <i class="bi bi-person-circle"></i>
-                </span>
-
-            </div>
+            @include('partials.mobile-topbar')
 
             <div class="container-fluid">
 
@@ -283,7 +274,7 @@
                                             Select a category
                                         </option>
 
-                                        @foreach ($category as $item)
+                                        @foreach ($categories as $item)
                                             <option
                                                 value="{{ $item->id }}"
                                                 @selected(
@@ -716,41 +707,7 @@
             {{-- =====================================================
                 NAVEGAÇÃO MOBILE
             ====================================================== --}}
-            <nav class="bottom-nav">
-
-                <a
-                    href="{{ route('dashboard') }}"
-                    title="Dashboard"
-                >
-                    <i class="bi bi-house"></i>
-                </a>
-
-                <a
-                    href="{{ route('task.create') }}"
-                    class="active"
-                    title="New Task"
-                >
-                    <i class="bi bi-plus-square"></i>
-                </a>
-
-                <a
-                    href="{{ route('category.create') }}"
-                    title="New Category"
-                >
-                    <i class="bi bi-tags"></i>
-                </a>
-
-                @if (\Illuminate\Support\Facades\Route::has('calendar.index'))
-                    <a
-                        href="{{ route('calendar.index') }}"
-                        title="Calendar"
-                    >
-                        <i class="bi bi-calendar3"></i>
-                    </a>
-                @endif
-
-            </nav>
+            @include('partials.bottom-nav')
 
         </main>
     </div>
-</x-app-layout>

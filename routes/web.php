@@ -22,11 +22,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/create', 'create')->name('task.create');
         Route::post('/', 'store')->name('task.store');
 
-        Route::get('/{task}/edit', 'edit')->name('edit');
-        Route::patch('/{task}', 'update')->name('update');
+        Route::get('/{task}/edit', 'edit')->name('task.edit');
+        Route::patch('/{task}', 'update')->name('task.update');
 
-        Route::patch('/{task}/complete', 'complete')->name('complete');
-        Route::delete('/{task}', 'destroy')->name('destroy');
+        Route::patch('/{task}/complete', 'complete')->name('task.complete');
+        Route::delete('/{task}', 'destroy')->name('task.destroy');
     });
 
     Route::prefix('category')->name('category.')->controller(CategoryController::class)->group(function () {

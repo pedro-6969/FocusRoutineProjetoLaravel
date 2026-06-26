@@ -6,47 +6,13 @@
     <div class="app-wrapper">
 
         {{-- Sidebar desktop --}}
-        <aside class="app-sidebar d-none d-lg-block">
-            <div class="text-center mb-4">
-                <span class="fr-logo fr-logo-dark">
-                    <i class="bi bi-bullseye"></i>
-                </span>
-            </div>
-
-            <a href="{{ route('dashboard') }}" class="sidebar-link active" title="Dashboard">
-                <i class="bi bi-house"></i>
-            </a>
-
-            <a href="{{ route('task.create') }}" class="sidebar-link" title="New Task">
-                <i class="bi bi-plus-square"></i>
-            </a>
-
-            <a href="{{ route('category.create') }}" class="sidebar-link" title="New Category">
-                <i class="bi bi-tags"></i>
-            </a>
-
-            {{-- Use esta rota apenas se o CalendarController já existir --}}
-            <a href="{{ route('calendar.show') }}" class="sidebar-link" title="Calendar">
-                <i class="bi bi-calendar3"></i>
-            </a>
-        </aside>
+        @include('partials.sidebar')
 
         {{-- Conteúdo principal --}}
         <main class="content-area">
 
             {{-- Topbar mobile --}}
-            <div class="mobile-topbar">
-                <div class="fr-brand">
-                    <span class="fr-logo">
-                        <i class="bi bi-bullseye"></i>
-                    </span>
-                    <span>Focus Routine</span>
-                </div>
-
-                <span>
-                    <i class="bi bi-person-circle"></i>
-                </span>
-            </div>
+            @include('partials.mobile-topbar')
 
             <div class="container-fluid">
 
@@ -81,7 +47,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
                     <div>
                         <h2 class="fw-bold mb-1">
-                            Bem-vindo de volta, {{ Auth::user()->name }}!
+                            Welcome back, {{ Auth::user()->name }}!
                         </h2>
 
                         <p class="text-muted mb-0">
@@ -354,8 +320,8 @@
                                             </span>
                                         </div>
 
-                                        <p class="text-muted small mb-2">
-                                            {{ $item->description ?: 'No description.' }}
+                                        <p class="text-muted small mb-2 task-description">
+                                            {{ \Illuminate\Support\Str::limit($item->description ?: 'No description.', 90) }}
                                         </p>
 
                                         <div class="small text-muted mb-2">
@@ -369,14 +335,14 @@
                                         </div>
 
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <span class="{{ $item->status === 'Completed' ? 'status-completed' : 'status-pending' }}">
+                                            <span class="{{ $item->status === 'completed' ? 'status-completed' : 'status-pending' }}">
                                                 {{ $item->status }}
                                             </span>
 
                                             <div class="d-flex gap-2">
 
                                                 {{-- Botão de concluir --}}
-                                                @if ($item->status === 'Pending')
+                                                @if ($item->status === 'pending')
                                                     <form action="{{ route('task.complete', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('PATCH')
@@ -386,7 +352,7 @@
                                                         </button>
                                                     </form>
                                                 @endif
-
+                                                
                                                 {{-- Botão de editar --}}
                                                 <a href="{{ route('task.edit', $item->id) }}" class="btn btn-sm btn-fr-outline" title="Edit task">
                                                     <i class="bi bi-pencil"></i>
@@ -443,24 +409,7 @@
             </div>
 
             {{-- Bottom navigation mobile --}}
-            <nav class="bottom-nav">
-                <a href="{{ route('dashboard') }}" class="active">
-                    <i class="bi bi-house"></i>
-                </a>
-
-                <a href="{{ route('task.create') }}">
-                    <i class="bi bi-plus-square"></i>
-                </a>
-
-                <a href="{{ route('category.create') }}">
-                    <i class="bi bi-tags"></i>
-                </a>
-
-                {{-- Use somente se a rota do calendário já existir --}}
-                <a href="{{ route('calendar.show') }}">
-                    <i class="bi bi-calendar3"></i>
-                </a>
-            </nav>
+            @include('partials.bottom-nav')
 
         </main>
     </div>

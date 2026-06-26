@@ -9,72 +9,7 @@
     {{-- =========================================================
         SIDEBAR DO DESKTOP
     ========================================================== --}}
-    <aside class="app-sidebar d-none d-lg-block">
-
-        {{-- Logo --}}
-        <div class="text-center mb-4">
-            <span class="fr-logo fr-logo-dark mx-auto">
-                <i class="bi bi-bullseye"></i>
-            </span>
-        </div>
-
-        <nav>
-            {{-- Dashboard --}}
-            <a
-                href="{{ route('dashboard') }}"
-                class="sidebar-link"
-                title="Dashboard"
-            >
-                <i class="bi bi-house"></i>
-            </a>
-
-            {{-- Calendário --}}
-            @if (\Illuminate\Support\Facades\Route::has('calendar.index'))
-                <a
-                    href="{{ route('calendar.index') }}"
-                    class="sidebar-link"
-                    title="Calendar"
-                >
-                    <i class="bi bi-calendar3"></i>
-                </a>
-            @endif
-
-            {{-- Nova tarefa --}}
-            <a
-                href="{{ route('task.create') }}"
-                class="sidebar-link active"
-                title="New Task"
-            >
-                <i class="bi bi-plus-lg"></i>
-            </a>
-
-            {{-- Nova categoria --}}
-            <a
-                href="{{ route('category.create') }}"
-                class="sidebar-link"
-                title="New Category"
-            >
-                <i class="bi bi-tags"></i>
-            </a>
-
-            {{-- Logout --}}
-            <form
-                method="POST"
-                action="{{ route('logout') }}"
-                class="text-center mt-4"
-            >
-                @csrf
-
-                <button
-                    type="submit"
-                    class="sidebar-link border-0 bg-transparent"
-                    title="Logout"
-                >
-                    <i class="bi bi-box-arrow-right"></i>
-                </button>
-            </form>
-        </nav>
-    </aside>
+    @include('partials.sidebar')
 
     {{-- =========================================================
         CONTEÚDO PRINCIPAL
@@ -82,23 +17,8 @@
     <main class="content-area">
 
         {{-- Topbar mobile --}}
-        <header class="mobile-topbar">
-            <div class="fr-brand">
-                <span class="fr-logo">
-                    <i class="bi bi-bullseye"></i>
-                </span>
 
-                <span>Focus Routine</span>
-            </div>
-
-            <a
-                href="{{ route('dashboard') }}"
-                class="text-white"
-                title="Dashboard"
-            >
-                <i class="bi bi-house fs-4"></i>
-            </a>
-        </header>
+        @include('partials.mobile-topbar')
 
         <div class="container-fluid">
 
@@ -632,52 +552,7 @@
         {{-- =========================================================
             NAVEGAÇÃO INFERIOR MOBILE
         ========================================================== --}}
-        <nav class="bottom-nav">
-
-            <a
-                href="{{ route('dashboard') }}"
-                title="Dashboard"
-            >
-                <i class="bi bi-house"></i>
-            </a>
-
-            @if (\Illuminate\Support\Facades\Route::has('calendar.index'))
-                <a
-                    href="{{ route('calendar.index') }}"
-                    title="Calendar"
-                >
-                    <i class="bi bi-calendar3"></i>
-                </a>
-            @endif
-
-            <a
-                href="{{ route('task.create') }}"
-                class="active"
-                title="New Task"
-            >
-                <i class="bi bi-plus-lg"></i>
-            </a>
-
-            <a
-                href="{{ route('category.create') }}"
-                title="New Category"
-            >
-                <i class="bi bi-tags"></i>
-            </a>
-
-            <form
-                method="POST"
-                action="{{ route('logout') }}"
-            >
-                @csrf
-
-                <button type="submit" title="Logout">
-                    <i class="bi bi-box-arrow-right"></i>
-                </button>
-            </form>
-
-        </nav>
-
+        @include('partials.bottom-nav')
     </main>
 </div>
 

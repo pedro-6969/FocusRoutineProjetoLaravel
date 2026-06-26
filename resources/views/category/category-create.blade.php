@@ -8,54 +8,7 @@
         {{-- =========================================================
             SIDEBAR — VISÍVEL SOMENTE NO DESKTOP
         ========================================================== --}}
-        <aside class="app-sidebar d-none d-lg-block">
-
-            {{-- Logo do sistema --}}
-            <div class="text-center mb-4">
-                <span class="fr-logo fr-logo-dark">
-                    <i class="bi bi-bullseye"></i>
-                </span>
-            </div>
-
-            {{-- Dashboard --}}
-            <a
-                href="{{ route('dashboard') }}"
-                class="sidebar-link"
-                title="Dashboard"
-            >
-                <i class="bi bi-house"></i>
-            </a>
-
-            {{-- Criar tarefa --}}
-            <a
-                href="{{ route('task.create') }}"
-                class="sidebar-link"
-                title="New Task"
-            >
-                <i class="bi bi-plus-square"></i>
-            </a>
-
-            {{-- Criar categoria --}}
-            <a
-                href="{{ route('category.create') }}"
-                class="sidebar-link active"
-                title="New Category"
-            >
-                <i class="bi bi-tags"></i>
-            </a>
-
-            {{-- Calendário: só aparece se a rota existir --}}
-            @if (\Illuminate\Support\Facades\Route::has('calendar.index'))
-                <a
-                    href="{{ route('calendar.index') }}"
-                    class="sidebar-link"
-                    title="Calendar"
-                >
-                    <i class="bi bi-calendar3"></i>
-                </a>
-            @endif
-
-        </aside>
+        @include('partials.sidebar')
 
         {{-- =========================================================
             CONTEÚDO PRINCIPAL
@@ -63,21 +16,7 @@
         <main class="content-area">
 
             {{-- Topbar mobile --}}
-            <div class="mobile-topbar">
-
-                <div class="fr-brand">
-                    <span class="fr-logo">
-                        <i class="bi bi-bullseye"></i>
-                    </span>
-
-                    <span>Focus Routine</span>
-                </div>
-
-                <span>
-                    <i class="bi bi-person-circle"></i>
-                </span>
-
-            </div>
+            @include('partials.mobile-topbar')
 
             <div class="container-fluid">
 
@@ -365,34 +304,7 @@
             {{-- =========================================================
                 NAVEGAÇÃO MOBILE
             ========================================================== --}}
-            <nav class="bottom-nav">
-
-                <a href="{{ route('dashboard') }}" title="Dashboard">
-                    <i class="bi bi-house"></i>
-                </a>
-
-                <a href="{{ route('task.create') }}" title="New Task">
-                    <i class="bi bi-plus-square"></i>
-                </a>
-
-                <a
-                    href="{{ route('category.create') }}"
-                    class="active"
-                    title="New Category"
-                >
-                    <i class="bi bi-tags"></i>
-                </a>
-
-                @if (\Illuminate\Support\Facades\Route::has('calendar.index'))
-                    <a
-                        href="{{ route('calendar.index') }}"
-                        title="Calendar"
-                    >
-                        <i class="bi bi-calendar3"></i>
-                    </a>
-                @endif
-
-            </nav>
+            @include('partials.bottom-nav')
 
         </main>
     </div>

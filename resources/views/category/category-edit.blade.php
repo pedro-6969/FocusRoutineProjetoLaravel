@@ -4,7 +4,12 @@
 
 @section('content')
     <div class="app-wrapper">
+
+        @include('partials.sidebar')
+
         <main class="content-area w-100">
+
+            @include('partials.mobile-topbar')
 
             <div class="container">
                 <div class="row justify-content-center">
@@ -87,10 +92,6 @@
                                     <button type="submit" class="btn btn-fr-primary py-2">
                                         Save Changes
                                     </button>
-
-                                    <a href="{{ route('category.index') }}" class="btn btn-fr-outline py-2">
-                                        Back to Categories
-                                    </a>
                                 </div>
                             </form>
 
@@ -100,6 +101,7 @@
                 </div>
             </div>
 
+            @include('partials.bottom-nav')
         </main>
     </div>
 @endsection

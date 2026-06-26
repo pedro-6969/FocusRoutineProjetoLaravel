@@ -23,7 +23,7 @@
 
 <body>
     {{-- Mensagens de sucesso ou erro vindas do Controller --}}
-    @if (session('success') || session('error'))
+    {{-- @if (session('success') || session('error'))
         <div class="container pt-3">
             @if (session('success'))
                 <div class="alert alert-success rounded-4">
@@ -37,7 +37,7 @@
                 </div>
             @endif
         </div>
-    @endif
+    @endif --}}
 
     {{-- Conteúdo principal de cada página --}}
     @yield('content')
